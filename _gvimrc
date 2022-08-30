@@ -1,0 +1,277 @@
+set guifont=Cica:h14
+set number
+" set relativenumber
+" set clipboard=unnamed
+set clipboard=unnamed,unnamedplus
+ " マウスの入力を受け付ける
+set mouse=a
+ " 編集中のファイル名を表示
+set title
+ " ツールバーを非表示
+set guioptions-=T
+"set lines=90 columns=200 " 全画面表示起動したい場合はコメントアウトを戻す
+" gui
+ " insert mode での ime デフォルト値
+set iminsert=0
+ " 検索時の ime デフォルト値 (-1 : iminsert の値を参照する)
+set imsearch=-1
+inoremap <silent> <ESC> <ESC>:set iminsert=0<CR>
+" タブ文字の代わりに同じ幅の空白文字を入れる
+set expandtab
+" タブ文字の表示幅
+set tabstop=2
+" 自動インデントの幅
+set shiftwidth=2
+" 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
+set softtabstop=2
+" 改行時に前の行のインデントを継続する
+set autoindent
+" 改行時に入力された行の末尾に合わせて次の行のインデントを増減する
+set smartindent
+" インクリメンタルサーチ
+set incsearch
+" 大文字、小文字の区別なく検索する
+set ignorecase
+" 検索文字列に大文字が含まれている場合は、区別して検索する
+set smartcase
+" 検索時にファイルの最後まで行ったら、最初に戻る
+set wrapscan
+" 入力中のコマンドを表示する
+set showcmd
+" ステータスラインを常に表示する
+set laststatus=2
+" set list " タブ、行末等の不可視文字を表示する
+" 対応する括弧の協調表示を無効にする
+let loaded_matchparen = 1
+" 対応する括弧の協調表示を無効化
+set noshowmatch
+" 対応する括弧の表示色を調整
+hi MatchParen ctermbg=1
+" カーソルを行頭、行末で止まらないようにする
+set whichwrap=b,s,h,l,<,>,[,]
+
+" 検索時に常に画面中央にフォーカスする
+nnoremap n nzz
+nnoremap N Nzz
+
+"eol:改行,start:入力モードに入る前の文字
+set backspace=indent,eol,start
+
+" 矩形選択の際に、文字がない場所もカーソル移動できる
+set virtualedit=block
+
+set noshowmode
+
+let mapleader = "\<Space>"
+" シンタックスハイライトオン
+syntax on
+" デフォルトのエンコーディング設定
+set encoding=utf-8
+
+set confirm    " 保存されていないファイルがあるときは終了前に保存確認
+set hidden     " 保存されていないファイルがあるときでも別のファイルを開くことが出来る
+set autoread   "外部でファイルに変更がされた場合は読みなおす
+set nobackup   " ファイル保存時にバックアップファイルを作らない
+set noswapfile " ファイル編集中にスワップファイルを作らない
+set noundofile  " .un~ファイル作成無効
+
+set history=1000    " 履歴保存数
+
+set fileencoding=utf-8 "空ファイルの文字コード設定
+set fileencodings=sjis,utf-8,cp932 "すでにあるファイルの文字コード設定
+
+" メニューの文字化け対策
+source $VIMRUNTIME/delmenu.vim
+set langmenu=ja_jp.utf-8
+source $VIMRUNTIME/menu.vim
+
+set scrolloff=8 " 上下8行の視界を確保
+set sidescrolloff=16 " 左右スクロール時の視界を確保
+
+set wildmenu wildmode=list:longest,full " コマンドラインモードでTABキーによるファイル名補完を有効にする
+
+set visualbell t_vb= "ビープ音すべてを無効にする
+set noerrorbells "エラーメッセージの表示時にビープを鳴らさない
+
+" 設定ファイル関係
+nnoremap <leader>es :edit C:\Users\futos\vim\_gvimrc<CR>
+nnoremap <leader>rs :source C:\Users\futos\vim\_gvimrc<CR>
+
+set noswapfile " swpファイル出力無効
+set nobackup " バックアップファイル出力無効
+set noundofile " undoファイル出力無効
+
+" swpファイル出力先
+" set directory=<ファイルパス>
+" バックアップファイル出力先
+" set backupdir=<ファイルパス>
+" undoファイル出力先
+" set undodir=<ファイルパス>
+
+"==============================
+" insert mode
+"==============================
+
+inoremap <C-p> <Up>
+inoremap <C-n> <Down>
+inoremap <C-f> <Right>
+inoremap <C-b> <Left>
+inoremap <C-d> <Delete>
+inoremap <C-a> <Home>
+inoremap <C-e> <End>
+"インサートモードでクリップボードの値をそのまま張り付ける
+inoremap <C-v> <C-r>*
+" インサートモードで、C-Q で次の単語を一つ削除
+inoremap <C-q> <C-o>cf
+
+" inoremap <silent> jj <ESC>:w<CR>
+inoremap <silent> jj <ESC>
+
+set completeopt=menuone,noinsert " 補完候補が1件だけでもウインドウを表示する。ウインドウ表示中に挿入しない
+
+" c-spaceで補完ウインドウを表示
+inoremap <C-space> <C-n>
+
+" インサートモードで行頭トグル
+inoremap <expr> <silent> <C-a> search('^\s\s*\%#', 'bcn') ? "\<C-o>0" : "\<C-o>^"
+
+
+"==============================
+" normal mode
+"==============================
+" c-s で保存する
+nnoremap <leader>s <Esc>:w<Cr>i
+nnoremap m ciw
+
+" カーソル移動等
+nnoremap j gj
+nnoremap k gk
+" リドゥ
+nnoremap U <C-r>
+" ファイル全体を選択
+nnoremap vie ggVG
+nnoremap vil ^v$
+nnoremap yil ^v$y
+nnoremap dil ^v$d
+
+" x で削除してもレジスタを上書きしない
+nnoremap x "_x
+
+"==============================
+" cmd mode
+"==============================
+
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-d> <Del>
+cnoremap <C-j> <Cr>
+
+
+" Surround visual selected text
+vnoremap s" c"<C-r>""<Esc>
+vnoremap s' c"<C-r>"'<Esc>
+vnoremap s( c(<C-r>")<Esc>
+vnoremap s[ c[<C-r>"]<Esc>
+vnoremap s{ c{<C-r>"}<Esc>
+vnoremap s< c<lt><C-r>"><Esc>
+
+" カーソル下の単語をハイライトしてから置換する cフラグを追加
+nmap # <Space><Space>:%s/<C-r>///gc<Left><Left><Left>
+
+
+"==============================
+" 画面分割
+"==============================
+
+nnoremap sp <C-w>s
+nnoremap ss <C-w>v
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sh <C-w>h
+nnoremap sl <C-w>l
+
+nnoremap sJ <C-w>J
+nnoremap sK <C-w>K
+nnoremap sH <C-w>H
+nnoremap sL <C-w>L
+nnoremap s= <C-w>=
+
+nnoremap <silent> sc :close<Cr>
+" 画面操作のためにsを無効化
+nnoremap s <Nop>
+
+
+
+" ビジュアルモードで連続してペーストする
+xnoremap <expr> p 'pgv"'.v:register.'y`>'
+" ペーストするたびに末尾に移動、連続してペーストした際に崩れない
+vnoremap <silent> y y`]
+vnoremap <silent> p p`]
+nnoremap <silent> p p`]
+
+
+
+"==============================
+" terminal
+"==============================
+
+" nnoremap <silent> <Space>tt :terminal<CR> " :term でよくないか
+tnoremap <silent> <Esc> <C-\><C-n>
+" tnoremap <silent> sc :q!<CR>
+
+" call plug#begin()
+" call plug#begin('~/vim81-kaoriya-win64/plugins')
+" call plug#begin('~/vim/plugins')
+call plug#begin('~\vim\plugins')
+
+Plug 'jiangmiao/auto-pairs'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'osyo-manga/vim-anzu'
+Plug 'itchyny/lightline.vim'
+
+call plug#end()
+
+" vim-anzu
+nmap n <Plug>(anzu-n-with-echo)
+nmap N <Plug>(anzu-N-with-echo)
+nmap * <Plug>(anzu-star-with-echo)
+"nmap # <Plug>(anzu-sharp-with-echo)
+" clear status
+" nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
+nmap <silent> <Esc><Esc> :nohlsearch<CR>
+
+
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gs <plug>(lsp-document-symbol-search)
+    nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
+    nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> gi <plug>(lsp-implementation)
+    nmap <buffer> gt <plug>(lsp-type-definition)
+    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    nmap <buffer> [g <plug>(lsp-previous-diagnostic)
+    nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+    nmap <buffer> gh <plug>(lsp-hover)
+    " nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
+    " nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
+
+    let g:lsp_format_sync_timeout = 1000
+    autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+    
+    " refer to doc to add more commands
+endfunction
+
+augroup lsp_install
+    au!
+    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+
